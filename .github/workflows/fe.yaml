@@ -13,8 +13,8 @@ jobs:
         working-directory: ./fe 
       - run: npm run build
         working-directory: ./fe
-      - run: mkdir -p ./data/hosting/files
-      - run: cp -R ./fe/dist/* ./data/hosting/files
+      - run: mkdir -p ./data
+      - run: cp -R ./fe/dist/* ./data
       - uses: actions/upload-artifact@v3
         with:
           name: build-artifact
