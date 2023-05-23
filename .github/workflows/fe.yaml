@@ -13,8 +13,8 @@ jobs:
         working-directory: ./fe 
       - run: npm run build
         working-directory: ./fe
-      - run: mkdir -p ./data
-      - run: cp -R ./fe/dist/* ./data
+      - run: mkdir -p ./data/files
+      - run: cp -R ./fe/dist/* ./data/files
       - uses: actions/upload-artifact@v3
         with:
           name: build-artifact
@@ -35,8 +35,8 @@ jobs:
           path: build-artifact
       - run: realm-cli login --api-key ${{ secrets.API_KEY }} --private-api-key ${{ secrets.PRIVATE_API_KEY }} -y
       - run: realm-cli pull --remote ${{ vars.APP_ID }}
-      - run: cp -R ./build-artifact/* ./${{ vars.APP_NAME }}/hosting/files
+      - run: cp -R ./build-artifact/* ./${{ vars.APP_NAME }}/hosting
       - run: ls -lah
-        working-directory: ./${{ vars.APP_NAME }}/hosting/files 
+        working-directory: ./${{ vars.APP_NAME }}/hosting 
       - run: realm-cli push --remote ${{ vars.APP_ID }} -s -c -y
         working-directory: ./${{ vars.APP_NAME }}
