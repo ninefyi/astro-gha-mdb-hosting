@@ -14,7 +14,7 @@ jobs:
       - run: npm run build
         working-directory: ./fe
       - run: mkdir -p ./data/hosting/files
-      - run: cp -R ./fe/build/* ./data/hosting/files
+      - run: cp -R ./fe/dist/* ./data/hosting/files
       - uses: actions/upload-artifact@v3
         with:
           name: build-artifact
